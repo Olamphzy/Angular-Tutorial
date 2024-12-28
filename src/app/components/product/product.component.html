@@ -1,0 +1,37 @@
+<div class="column gap-1 wrapper">
+  <img [src]="product.image" alt="Product Thumbnail" />
+  <h2 class="title">{{ product.name | truncateName : 16 : "..." }}</h2>
+
+  <div class="row gap-05">
+    <span class="price-label">Price:</span>
+    <div class="price">{{ product.price | price }}</div>
+  </div>
+
+  <!-- whenever internal prperty of prating changes, the changes are reflected on rating property and when value of rating property changes so does value of prating internal ppt changes that's its called two-way data binding -->
+  <p-rating
+    [(ngModel)]="product.rating"
+    [readonly]="true"
+    isonCancelClass="hidden"
+  ></p-rating>
+
+  <div class="row gap-05">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-pencil"
+      (click)="editProduct()"
+      label="Edit"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-trash"
+      (click)="confirmDelete()"
+      label="Delete"
+      #deleteButton
+      class="p-button-danger"
+    ></button>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
